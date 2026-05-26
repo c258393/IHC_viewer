@@ -1,0 +1,21 @@
+# renv library (rebuilt from lockfile)
+renv/library/
+renv/staging/
+renv/sandbox/
+renv/cellar/
+
+# Image data (too large for Git)
+images/*
+dzi_tiles/*
+
+# Keep the directories themselves
+!images/.gitkeep
+!dzi_tiles/.gitkeep
+
+# R artifacts
+.Rhistory
+.RData
+
+# OS
+.DS_Store
+Thumbs.db

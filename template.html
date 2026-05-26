@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>IHC Image Viewer</title>
+  {{ headContent() }}
+  <script src="https://cdn.jsdelivr.net/npm/openseadragon@6.0.2/build/openseadragon/openseadragon.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; height: 100%; overflow: hidden;
+                 font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+                 background: #111; color: #eee; }
+
+    .app-container { display: flex; height: 100vh; }
+
+    /* ---- Sidebar ---- */
+    .sidebar {
+      width: 320px; min-width: 320px; height: 100vh;
+      background: #1e1e2e; border-right: 1px solid #333;
+      display: flex; flex-direction: column; overflow: hidden;
+    }
+    .sidebar-header {
+      padding: 16px 16px 12px; border-bottom: 1px solid #333;
+    }
+    .sidebar-header h2 {
+      margin: 0 0 12px; font-size: 18px; font-weight: 600; color: #cdd6f4;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .sidebar-header h2 .logo { font-size: 24px; }
+    .dir-row { display: flex; gap: 6px; align-items: flex-start; }
+    .dir-row .form-group { flex: 1; margin-bottom: 0; }
+    .dir-row input[type="text"] {
+      padding: 7px 10px !important; border: 1px solid #444 !important; border-radius: 6px !important;
+      background: #313244 !important; color: #cdd6f4 !important; font-size: 13px !important;
+      width: 100% !important;
+    }
+    .dir-row input[type="text"]:focus { border-color: #89b4fa !important; }
+    .btn-refresh {
+      padding: 7px 12px; border: none; border-radius: 6px; cursor: pointer;
+      background: #89b4fa; color: #1e1e2e; font-weight: 600; font-size: 13px;
+      margin-top: 0;
+    }
+    .btn-refresh:hover { background: #74c7ec; }
+
+    .file-count {
+      padding: 8px 16px; font-size: 12px; color: #6c7086;
+      border-bottom: 1px solid #333;
+    }
+
+    /* ---- Image list ---- */
+    .image-list {
+      flex: 1; overflow-y: auto; padding: 6px 8px;
+    }
+    .image-list::-webkit-scrollbar { width: 6px; }
+    .image-list::-webkit-scrollbar-thumb { background: #444; border-radius: 3px; }
+
+    .img-item {
+      padding: 9px 12px; margin: 2px 0; cursor: pointer; border-radius: 8px;
+      display: flex; align-items: center; gap: 8px;
+      transition: background 0.15s; font-size: 13px; color: #bac2de;
+    }
+    .img-item:hover { background: #313244; }
+    .img-item.selected { background: #45475a; color: #cdd6f4; }
+    .img-item .name {
+      flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    .badge {
+      font-size: 10px; padding: 2px 7px; border-radius: 4px;
+      font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; flex-shrink: 0;
+    }
+    .badge-simple { background: #a6e3a1; color: #1e1e2e; }
+    .badge-dzi    { background: #89b4fa; color: #1e1e2e; }
+    .badge-wsi    { background: #fab387; color: #1e1e2e; }
+
+    /* ---- Metadata ---- */
+    .meta-panel {
+      border-top: 1px solid #333; padding: 12px 16px;
+      font-size: 12px; color: #a6adc8; max-height: 180px; overflow-y: auto;
+    }
+    .meta-panel .meta-row {
+      display: flex; justify-content: space-between; padding: 3px 0;
+    }
+    .meta-panel .meta-label { font-weight: 600; color: #cdd6f4; }
+
+    /* ---- Viewer ---- */
+    .viewer-panel { flex: 1; position: relative; background: #11111b; }
+    #osd-viewer { width: 100%; height: 100%; }
+
+    .empty-state {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      text-align: center; color: #585b70; pointer-events: none;
+    }
+    .empty-state .icon { font-size: 72px; margin-bottom: 16px; opacity: 0.6; }
+    .empty-state .title { font-size: 20px; font-weight: 500; margin-bottom: 8px; }
+    .empty-state .sub { font-size: 13px; }
+
+    /* ---- Overlay info bar ---- */
+    .info-bar {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: rgba(30,30,46,0.85); backdrop-filter: blur(8px);
+      padding: 8px 16px; font-size: 12px; color: #a6adc8;
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid #333; display: none;
+    }
+    .info-bar.visible { display: flex; }
+
+    /* ---- Toast notification ---- */
+    .toast {
+      position: fixed; top: 20px; right: 20px; z-index: 9999;
+      background: #f38ba8; color: #1e1e2e; padding: 12px 20px;
+      border-radius: 8px; font-size: 13px; font-weight: 500;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      transform: translateX(120%); transition: transform 0.3s ease;
+      max-width: 400px;
+    }
+    .toast.show { transform: translateX(0); }
+    .toast.warning { background: #fab387; }
+    .toast.info { background: #89b4fa; }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <h2><span class="logo">&#128300;</span> IHC Image Viewer</h2>
+        <div class="dir-row">
+          {{ dir_input }}
+          {{ refresh_btn }}
+        </div>
+      </div>
+      <div class="file-count" id="file-count">0 image(s)</div>
+      <div class="image-list" id="image-list">
+        {{ file_list_ui }}
+      </div>
+      {{ metadata_ui }}
+    </div>
+
+    <!-- Viewer -->
+    <div class="viewer-panel">
+      <div id="osd-viewer"></div>
+      <div class="empty-state" id="empty-state">
+        <div class="icon">&#128300;</div>
+        <div class="title">Select an image to view</div>
+        <div class="sub">Supports PNG, JPG, GIF, BMP, WEBP<br>and DZI-converted SVS, TIFF, NDPI</div>
+      </div>
+      <div class="info-bar" id="info-bar">
+        <span id="info-name"></span>
+        <span id="info-zoom"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast notification -->
+  <div class="toast" id="toast"></div>
+
+  <script>
+    var viewer = null;
+
+    function showToast(msg, type, duration) {
+      var t = document.getElementById("toast");
+      t.textContent = msg;
+      t.className = "toast " + (type || "") + " show";
+      setTimeout(function() { t.className = "toast"; }, duration || 4000);
+    }
+
+    // Load image into OpenSeadragon
+    Shiny.addCustomMessageHandler("loadImage", function(msg) {
+      document.getElementById("empty-state").style.display = "none";
+
+      if (viewer) { viewer.destroy(); viewer = null; }
+
+      var tileSource;
+      if (msg.type === "simple") {
+        tileSource = { type: "image", url: msg.url };
+      } else if (msg.type === "dzi") {
+        tileSource = msg.url;
+      }
+
+      viewer = OpenSeadragon({
+        id: "osd-viewer",
+        prefixUrl: "https://cdn.jsdelivr.net/npm/openseadragon@6.0.2/build/openseadragon/images/",
+        tileSources: tileSource,
+        showNavigator: true,
+        navigatorPosition: "BOTTOM_RIGHT",
+        navigatorSizeRatio: 0.15,
+        showRotationControl: true,
+        showFullPageControl: false,
+        animationTime: 0.4,
+        minZoomImageRatio: 0.3,
+        maxZoomPixelRatio: 40,
+        visibilityRatio: 0.5,
+        constrainDuringPan: false,
+        defaultZoomLevel: 0,
+        gestureSettingsMouse: {
+          scrollToZoom: true, clickToZoom: true,
+          dblClickToZoom: true, flickEnabled: true
+        },
+        gestureSettingsTouch: {
+          pinchToZoom: true, flickEnabled: true
+        }
+      });
+
+      // Info bar
+      var infoBar = document.getElementById("info-bar");
+      var infoName = document.getElementById("info-name");
+      var infoZoom = document.getElementById("info-zoom");
+      infoName.textContent = msg.name || "";
+      infoBar.className = "info-bar visible";
+
+      viewer.addHandler("zoom", function(e) {
+        infoZoom.textContent = "Zoom: " + e.zoom.toFixed(2) + "x";
+      });
+
+      viewer.addHandler("open", function() {
+        infoZoom.textContent = "Zoom: " + viewer.viewport.getZoom().toFixed(2) + "x";
+      });
+
+      viewer.addHandler("open-failed", function(e) {
+        showToast("Failed to open image: " + (e.message || "unknown error"), "");
+        Shiny.setInputValue("viewer_error", e.message || "open-failed");
+      });
+    });
+
+    Shiny.addCustomMessageHandler("showToast", function(msg) {
+      showToast(msg.text, msg.type, msg.duration);
+    });
+
+    Shiny.addCustomMessageHandler("clearViewer", function(msg) {
+      if (viewer) { viewer.destroy(); viewer = null; }
+      document.getElementById("empty-state").style.display = "";
+      document.getElementById("info-bar").className = "info-bar";
+    });
+
+    // Update file count
+    Shiny.addCustomMessageHandler("updateFileCount", function(msg) {
+      document.getElementById("file-count").textContent = msg.text;
+    });
+
+    // Image item click handler (using event delegation)
+    document.addEventListener("click", function(e) {
+      var item = e.target.closest(".img-item");
+      if (!item) return;
+      var file = item.getAttribute("data-file");
+      if (file) {
+        Shiny.setInputValue("select_image", file, {priority: "event"});
+        // Visual selection
+        document.querySelectorAll(".img-item.selected").forEach(function(el) {
+          el.classList.remove("selected");
+        });
+        item.classList.add("selected");
+      }
+    });
+  </script>
+</body>
+</html>
