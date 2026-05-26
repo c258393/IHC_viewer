@@ -56,6 +56,10 @@ ui <- htmlTemplate(
   s3_browse_btn   = actionButton("s3_browse", "\u21bb Browse",
                                   class = "btn-refresh"),
   s3_file_list_ui = uiOutput("s3_file_list_ui"),
+  local_upload    = fileInput("file_upload", NULL, multiple = TRUE,
+                              accept = paste0(".", ALL_IMAGE_EXT),
+                              buttonLabel = "\U0001F4E4 Upload",
+                              placeholder = "Choose image files..."),
   local_file_list_ui = uiOutput("local_file_list_ui"),
   metadata_ui     = uiOutput("metadata_ui")
 )
@@ -348,6 +352,81 @@ server <- function(input, output, session) {
 
   observeEvent(input$local_refresh, {
     rv$local_files <- scan_local()
+  })
+
+  # File upload handler
+  observeEvent(input$file_upload, {
+    files <- input$file_upload
+    if (is.null(files)) return()
+
+    n <- nrow(files)
+    session$sendCustomMessage("showProgress",
+      list(show = TRUE, text = paste0("Uploading ", n, " file(s)...")))
+
+    last_fname <- NULL
+    for (i in seq_len(n)) {
+      orig_name <- files$name[i]
+      tmp_path  <- files$datapath[i]
+      ext       <- get_ext(orig_name)
+
+      if (!(ext %in% ALL_IMAGE_EXT)) {
+        session$sendCustomMessage("showToast",
+          list(text = paste0("Skipped ", orig_name, " (unsupported format)"),
+               type = "warning", duration = 3000))
+        next
+      }
+
+      dest <- safe_path(DEFAULT_IMAGE_DIR, orig_name)
+      if (is.null(dest)) next
+
+      file.copy(tmp_path, dest, overwrite = TRUE)
+      last_fname <- basename(dest)
+
+      # Auto-convert WSI to DZI
+      base_name <- tools::file_path_sans_ext(last_fname)
+      dzi_path  <- file.path(DEFAULT_DZI_DIR, paste0(base_name, ".dzi"))
+
+      if (ext %in% WSI_FORMATS && !file.exists(dzi_path) && VIPS_AVAILABLE) {
+        session$sendCustomMessage("showProgress",
+          list(show = TRUE,
+               text = paste0("Converting ", last_fname, " to DZI (", i, "/", n, ")...")))
+        tryCatch({
+          system2("vips", c("dzsave", shQuote(dest), shQuote(
+            file.path(DEFAULT_DZI_DIR, base_name)),
+            "--tile-size", "254", "--overlap", "1",
+            "--suffix", ".jpeg[Q=85]",
+            "--depth", "onepixel", "--background", "255"),
+            stdout = TRUE, stderr = TRUE)
+        }, error = function(e) {
+          session$sendCustomMessage("showToast",
+            list(text = paste0("DZI conversion failed: ", last_fname),
+                 type = "warning", duration = 4000))
+        })
+      }
+    }
+
+    session$sendCustomMessage("showProgress", list(show = FALSE))
+
+    # Refresh file list
+    rv$local_files <- scan_local()
+    session$sendCustomMessage("showToast",
+      list(text = paste0("Uploaded ", n, " file(s)"), type = "info", duration = 3000))
+
+    # Auto-view last uploaded file
+    if (!is.null(last_fname)) {
+      rv$selected <- last_fname
+      ext <- get_ext(last_fname)
+      base_name <- tools::file_path_sans_ext(last_fname)
+      dzi_path  <- file.path(DEFAULT_DZI_DIR, paste0(base_name, ".dzi"))
+
+      if (file.exists(dzi_path)) {
+        session$sendCustomMessage("loadImage", list(
+          type = "dzi", url = paste0("dzi/", base_name, ".dzi"), name = last_fname))
+      } else if (ext %in% SIMPLE_FORMATS) {
+        session$sendCustomMessage("loadImage", list(
+          type = "simple", url = paste0("images/", last_fname), name = last_fname))
+      }
+    }
   })
 
   # Local file list UI
