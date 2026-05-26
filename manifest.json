@@ -85,6 +85,40 @@
         "RemoteSha": "1.1.1-1.1"
       }
     },
+    "askpass": {
+      "Source": "CRAN",
+      "Repository": "https://cloud.r-project.org",
+      "description": {
+        "Package": "askpass",
+        "Type": "Package",
+        "Title": "Password Entry Utilities for R, Git, and SSH",
+        "Version": "1.2.1",
+        "Authors@R": "person(\"Jeroen\", \"Ooms\", role = c(\"aut\", \"cre\"), \n    email = \"jeroenooms@gmail.com\", comment = c(ORCID = \"0000-0002-4035-0289\"))",
+        "Description": "Cross-platform utilities for prompting the user for credentials or a \n    passphrase, for example to authenticate with a server or read a protected key.\n    Includes native programs for MacOS and Windows, hence no 'tcltk' is required. \n    Password entry can be invoked in two different ways: directly from R via the \n    askpass() function, or indirectly as password-entry back-end for 'ssh-agent' \n    or 'git-credential' via the SSH_ASKPASS and GIT_ASKPASS environment variables.\n    Thereby the user can be prompted for credentials or a passphrase if needed \n    when R calls out to git or ssh.",
+        "License": "MIT + file LICENSE",
+        "URL": "https://r-lib.r-universe.dev/askpass",
+        "BugReports": "https://github.com/r-lib/askpass/issues",
+        "Encoding": "UTF-8",
+        "Imports": "sys (>= 2.1)",
+        "RoxygenNote": "7.2.3",
+        "Suggests": "testthat",
+        "Language": "en-US",
+        "NeedsCompilation": "yes",
+        "Packaged": "2024-10-03 14:12:09 UTC; jeroen",
+        "Author": "Jeroen Ooms [aut, cre] (<https://orcid.org/0000-0002-4035-0289>)",
+        "Maintainer": "Jeroen Ooms <jeroenooms@gmail.com>",
+        "Repository": "CRAN",
+        "Date/Publication": "2024-10-04 07:20:03 UTC",
+        "Built": "R 4.1.2; x86_64-pc-linux-gnu; 2026-05-26 03:41:47 UTC; unix",
+        "RemoteType": "standard",
+        "RemoteRef": "askpass",
+        "RemotePkgRef": "askpass",
+        "RemoteRepos": "https://cloud.r-project.org",
+        "RemoteReposName": "CRAN",
+        "RemotePkgPlatform": "source",
+        "RemoteSha": "1.2.1"
+      }
+    },
     "base64enc": {
       "Source": "CRAN",
       "Repository": "https://cloud.r-project.org",
@@ -256,6 +290,42 @@
         "RemoteReposName": "CRAN",
         "RemotePkgPlatform": "source",
         "RemoteSha": "2.0.0"
+      }
+    },
+    "curl": {
+      "Source": "CRAN",
+      "Repository": "https://cloud.r-project.org",
+      "description": {
+        "Package": "curl",
+        "Type": "Package",
+        "Title": "A Modern and Flexible Web Client for R",
+        "Version": "7.1.0",
+        "Authors@R": "c(\n    person(\"Jeroen\", \"Ooms\", role = c(\"aut\", \"cre\"), email = \"jeroenooms@gmail.com\",\n      comment = c(ORCID = \"0000-0002-4035-0289\")),\n    person(\"Hadley\", \"Wickham\", role = \"ctb\"),\n    person(\"Posit Software, PBC\", role = \"cph\"))",
+        "Description": "Bindings to 'libcurl' <https://curl.se/libcurl/> for performing fully\n    configurable HTTP/FTP requests where responses can be processed in memory, on\n    disk, or streaming via the callback or connection interfaces. Some knowledge\n    of 'libcurl' is recommended; for a more-user-friendly web client see the \n    'httr2' package which builds on this package with http specific tools and logic.",
+        "License": "MIT + file LICENSE",
+        "SystemRequirements": "libcurl (>= 7.73): libcurl-devel (rpm) or\nlibcurl4-openssl-dev (deb)",
+        "URL": "https://jeroen.r-universe.dev/curl",
+        "BugReports": "https://github.com/jeroen/curl/issues",
+        "Suggests": "spelling, testthat (>= 1.0.0), knitr, jsonlite, later,\nrmarkdown, httpuv (>= 1.4.4), webutils",
+        "VignetteBuilder": "knitr",
+        "Depends": "R (>= 3.0.0)",
+        "RoxygenNote": "7.3.2",
+        "Encoding": "UTF-8",
+        "Language": "en-US",
+        "NeedsCompilation": "yes",
+        "Packaged": "2026-04-21 14:47:54 UTC; jeroen",
+        "Author": "Jeroen Ooms [aut, cre] (ORCID: <https://orcid.org/0000-0002-4035-0289>),\n  Hadley Wickham [ctb],\n  Posit Software, PBC [cph]",
+        "Maintainer": "Jeroen Ooms <jeroenooms@gmail.com>",
+        "Repository": "CRAN",
+        "Date/Publication": "2026-04-22 09:40:02 UTC",
+        "Built": "R 4.1.2; x86_64-pc-linux-gnu; 2026-05-26 03:41:39 UTC; unix",
+        "RemoteType": "standard",
+        "RemoteRef": "curl",
+        "RemotePkgRef": "curl",
+        "RemoteRepos": "https://cloud.r-project.org",
+        "RemoteReposName": "CRAN",
+        "RemotePkgPlatform": "source",
+        "RemoteSha": "7.1.0"
       }
     },
     "digest": {
@@ -515,6 +585,44 @@
         "RemoteSha": "1.6.17"
       }
     },
+    "httr2": {
+      "Source": "CRAN",
+      "Repository": "https://cloud.r-project.org",
+      "description": {
+        "Package": "httr2",
+        "Title": "Perform HTTP Requests and Process the Responses",
+        "Version": "1.2.2",
+        "Authors@R": "c(\n    person(\"Hadley\", \"Wickham\", , \"hadley@posit.co\", role = c(\"aut\", \"cre\")),\n    person(\"Posit Software, PBC\", role = c(\"cph\", \"fnd\")),\n    person(\"Maximilian\", \"Girlich\", role = \"ctb\")\n  )",
+        "Description": "Tools for creating and modifying HTTP requests, then\n    performing them and processing the results. 'httr2' is a modern\n    re-imagining of 'httr' that uses a pipe-based interface and solves\n    more of the problems that API wrapping packages face.",
+        "License": "MIT + file LICENSE",
+        "URL": "https://httr2.r-lib.org, https://github.com/r-lib/httr2",
+        "BugReports": "https://github.com/r-lib/httr2/issues",
+        "Depends": "R (>= 4.1)",
+        "Imports": "cli (>= 3.0.0), curl (>= 6.4.0), glue, lifecycle, magrittr,\nopenssl, R6, rappdirs, rlang (>= 1.1.0), vctrs (>= 0.6.3),\nwithr",
+        "Suggests": "askpass, bench, clipr, covr, docopt, httpuv, jose, jsonlite,\nknitr, later (>= 1.4.0), nanonext, otel (>= 0.2.0), otelsdk (>=\n0.2.0), paws.common (>= 0.8.0), promises, rmarkdown, testthat\n(>= 3.1.8), tibble, webfakes (>= 1.4.0), xml2",
+        "VignetteBuilder": "knitr",
+        "Config/Needs/website": "tidyverse/tidytemplate",
+        "Config/testthat/edition": "3",
+        "Config/testthat/parallel": "true",
+        "Config/testthat/start-first": "resp-stream, req-perform",
+        "Encoding": "UTF-8",
+        "RoxygenNote": "7.3.3",
+        "NeedsCompilation": "no",
+        "Packaged": "2025-12-05 17:46:06 UTC; hadleywickham",
+        "Author": "Hadley Wickham [aut, cre],\n  Posit Software, PBC [cph, fnd],\n  Maximilian Girlich [ctb]",
+        "Maintainer": "Hadley Wickham <hadley@posit.co>",
+        "Repository": "CRAN",
+        "Date/Publication": "2025-12-08 09:50:02 UTC",
+        "Built": "R 4.1.2; ; 2026-05-26 03:42:11 UTC; unix",
+        "RemoteType": "standard",
+        "RemoteRef": "httr2",
+        "RemotePkgRef": "httr2",
+        "RemoteRepos": "https://cloud.r-project.org",
+        "RemoteReposName": "CRAN",
+        "RemotePkgPlatform": "source",
+        "RemoteSha": "1.2.2"
+      }
+    },
     "jquerylib": {
       "Source": "CRAN",
       "Repository": "https://cloud.r-project.org",
@@ -755,6 +863,41 @@
         "RemoteSha": "0.13"
       }
     },
+    "openssl": {
+      "Source": "CRAN",
+      "Repository": "https://cloud.r-project.org",
+      "description": {
+        "Package": "openssl",
+        "Type": "Package",
+        "Title": "Toolkit for Encryption, Signatures and Certificates Based on\nOpenSSL",
+        "Version": "2.4.1",
+        "Authors@R": "c(person(\"Jeroen\", \"Ooms\", role = c(\"aut\", \"cre\"), email = \"jeroenooms@gmail.com\",\n    comment = c(ORCID = \"0000-0002-4035-0289\")),\n    person(\"Oliver\", \"Keyes\", role = \"ctb\"))",
+        "Description": "Bindings to OpenSSL libssl and libcrypto, plus custom SSH key parsers.\n    Supports RSA, DSA and EC curves P-256, P-384, P-521, and curve25519. Cryptographic\n    signatures can either be created and verified manually or via x509 certificates. \n    AES can be used in cbc, ctr or gcm mode for symmetric encryption; RSA for asymmetric\n    (public key) encryption or EC for Diffie Hellman. High-level envelope functions \n    combine RSA and AES for encrypting arbitrary sized data. Other utilities include key\n    generators, hash functions (md5, sha1, sha256, etc), base64 encoder, a secure random\n    number generator, and 'bignum' math methods for manually performing crypto \n    calculations on large multibyte integers.",
+        "License": "MIT + file LICENSE",
+        "URL": "https://jeroen.r-universe.dev/openssl",
+        "BugReports": "https://github.com/jeroen/openssl/issues",
+        "SystemRequirements": "OpenSSL >= 1.0.2",
+        "VignetteBuilder": "knitr",
+        "Imports": "askpass",
+        "Suggests": "curl, testthat (>= 2.1.0), digest, knitr, rmarkdown,\njsonlite, jose, sodium",
+        "RoxygenNote": "7.3.2",
+        "Encoding": "UTF-8",
+        "NeedsCompilation": "yes",
+        "Packaged": "2026-05-14 13:48:16 UTC; jeroen",
+        "Author": "Jeroen Ooms [aut, cre] (ORCID: <https://orcid.org/0000-0002-4035-0289>),\n  Oliver Keyes [ctb]",
+        "Maintainer": "Jeroen Ooms <jeroenooms@gmail.com>",
+        "Repository": "CRAN",
+        "Date/Publication": "2026-05-14 14:50:14 UTC",
+        "Built": "R 4.1.2; x86_64-pc-linux-gnu; 2026-05-26 03:41:50 UTC; unix",
+        "RemoteType": "standard",
+        "RemoteRef": "openssl",
+        "RemotePkgRef": "openssl",
+        "RemoteRepos": "https://cloud.r-project.org",
+        "RemoteReposName": "CRAN",
+        "RemotePkgPlatform": "source",
+        "RemoteSha": "2.4.1"
+      }
+    },
     "otel": {
       "Source": "CRAN",
       "Repository": "https://cloud.r-project.org",
@@ -788,6 +931,77 @@
         "RemoteReposName": "CRAN",
         "RemotePkgPlatform": "source",
         "RemoteSha": "0.2.0"
+      }
+    },
+    "paws.common": {
+      "Source": "CRAN",
+      "Repository": "https://cloud.r-project.org",
+      "description": {
+        "Package": "paws.common",
+        "Type": "Package",
+        "Title": "Paws Low-Level Amazon Web Services API",
+        "Version": "0.8.9",
+        "Authors@R": "c(\n        person(\"David\", \"Kretch\", email = \"david.kretch@gmail.com\", role = \"aut\"),\n        person(\"Adam\", \"Banker\", email = \"adam.banker39@gmail.com\", role = \"aut\"),\n        person(\"Dyfan\", \"Jones\", email = \"dyfan.r.jones@gmail.com\", role = \"cre\"),\n        person(\"Amazon.com, Inc.\", role = \"cph\")\n    )",
+        "Description": "Functions for making low-level API requests to Amazon Web Services\n    <https://aws.amazon.com>. The functions handle building, signing, and\n    sending requests, and receiving responses. They are designed to help build \n    higher-level interfaces to individual services, such as Simple Storage\n    Service (S3).",
+        "License": "Apache License (>= 2.0)",
+        "Depends": "R (>= 4.1.0)",
+        "URL": "https://github.com/paws-r/paws,\nhttps://paws-r.r-universe.dev/paws.common,\nhttps://www.paws-r-sdk.com",
+        "BugReports": "https://github.com/paws-r/paws/issues",
+        "Encoding": "UTF-8",
+        "LinkingTo": "Rcpp",
+        "Imports": "base64enc, curl, digest, httr2 (>= 1.0.4), jsonlite, methods,\nutils, stats, Rcpp, xml2",
+        "Suggests": "covr, crayon, mockery, withr, rstudioapi, testthat (>= 3.0.0)",
+        "SystemRequirements": "pandoc (>= 1.12.3) - http://pandoc.org",
+        "RoxygenNote": "7.3.3",
+        "Collate": "'RcppExports.R' 'util.R' 'cache.R' 'struct.R' 'handlers.R'\n'iniutil.R' 'config.R' 'logging.R' 'dateutil.R'\n'credential_sso.R' 'credential_sts.R' 'url.R' 'net.R'\n'credential_providers.R' 'credentials.R' 'client.R' 'convert.R'\n'service.R' 'custom_dynamodb.R' 'custom_rds.R' 'head_bucket.R'\n'http_status.R' 'error.R' 'custom_s3.R' 'handlers_core.R'\n'handlers_ec2query.R' 'handlers_jsonrpc.R' 'handlers_query.R'\n'handlers_rest.R' 'handlers_restjson.R' 'tags.R' 'xmlutil.R'\n'handlers_restxml.R' 'handlers_stream.R' 'idempotency.R'\n'jsonutil.R' 'mock_bindings.R' 'onLoad.R' 'paginate.R'\n'populateutil.R' 'queryutil.R' 'request.R' 'retry.R'\n'service_parameter_helper.R' 'signer_bearer.R' 'signer_v4.R'\n'signer_s3.R' 'signer_s3v4.R' 'signer_v1.R' 'signer_v2.R'\n'time.R'",
+        "Config/testthat/edition": "3",
+        "NeedsCompilation": "yes",
+        "Packaged": "2026-02-16 23:51:09 UTC; Dyfan.Jones",
+        "Author": "David Kretch [aut],\n  Adam Banker [aut],\n  Dyfan Jones [cre],\n  Amazon.com, Inc. [cph]",
+        "Maintainer": "Dyfan Jones <dyfan.r.jones@gmail.com>",
+        "Repository": "CRAN",
+        "Date/Publication": "2026-02-17 06:10:20 UTC",
+        "Built": "R 4.1.2; x86_64-pc-linux-gnu; 2026-05-26 04:11:33 UTC; unix",
+        "RemoteType": "standard",
+        "RemoteRef": "paws.common",
+        "RemotePkgRef": "paws.common",
+        "RemoteRepos": "https://cloud.r-project.org",
+        "RemoteReposName": "CRAN",
+        "RemotePkgPlatform": "source",
+        "RemoteSha": "0.8.9"
+      }
+    },
+    "paws.storage": {
+      "Source": "CRAN",
+      "Repository": "https://cloud.r-project.org",
+      "description": {
+        "Package": "paws.storage",
+        "Title": "'Amazon Web Services' Storage Services",
+        "Version": "0.9.0",
+        "Authors@R": "c(\n    person(\"David\", \"Kretch\", , \"david.kretch@gmail.com\", role = \"aut\"),\n    person(\"Adam\", \"Banker\", , \"adam.banker39@gmail.com\", role = \"aut\"),\n    person(\"Dyfan\", \"Jones\", , \"dyfan.r.jones@gmail.com\", role = \"cre\"),\n    person(\"Amazon.com, Inc.\", role = \"cph\")\n  )",
+        "Description": "Interface to 'Amazon Web Services' storage services,\n    including 'Simple Storage Service' ('S3') and more\n    <https://aws.amazon.com/>.",
+        "License": "Apache License (>= 2.0)",
+        "URL": "https://github.com/paws-r/paws,\nhttps://paws-r.r-universe.dev/paws.storage",
+        "BugReports": "https://github.com/paws-r/paws/issues",
+        "Imports": "paws.common (>= 0.8.0)",
+        "Suggests": "testthat",
+        "Encoding": "UTF-8",
+        "RoxygenNote": "7.3.2",
+        "Collate": "'backup_service.R' 'backup_interfaces.R' 'backup_operations.R'\n'dlm_service.R' 'dlm_interfaces.R' 'dlm_operations.R'\n'ebs_service.R' 'ebs_interfaces.R' 'ebs_operations.R'\n'efs_service.R' 'efs_interfaces.R' 'efs_operations.R'\n'finspacedata_service.R' 'finspacedata_interfaces.R'\n'finspacedata_operations.R' 'fsx_service.R' 'fsx_interfaces.R'\n'fsx_operations.R' 'glacier_service.R' 'glacier_interfaces.R'\n'glacier_operations.R' 'omics_service.R' 'omics_interfaces.R'\n'omics_operations.R' 'recyclebin_service.R'\n'recyclebin_interfaces.R' 'recyclebin_operations.R'\n'reexports_paws.common.R' 's3_service.R' 's3_operations.R'\n's3_custom.R' 's3_interfaces.R' 's3control_service.R'\n's3control_interfaces.R' 's3control_operations.R'\n's3outposts_service.R' 's3outposts_interfaces.R'\n's3outposts_operations.R' 's3tables_service.R'\n's3tables_interfaces.R' 's3tables_operations.R'\n'storagegateway_service.R' 'storagegateway_interfaces.R'\n'storagegateway_operations.R'",
+        "NeedsCompilation": "no",
+        "Packaged": "2025-03-14 09:23:43 UTC; dyfanjones",
+        "Author": "David Kretch [aut],\n  Adam Banker [aut],\n  Dyfan Jones [cre],\n  Amazon.com, Inc. [cph]",
+        "Maintainer": "Dyfan Jones <dyfan.r.jones@gmail.com>",
+        "Repository": "CRAN",
+        "Date/Publication": "2025-03-14 17:10:02 UTC",
+        "Built": "R 4.1.2; ; 2026-05-26 04:15:37 UTC; unix",
+        "RemoteType": "standard",
+        "RemoteRef": "paws.storage",
+        "RemotePkgRef": "paws.storage",
+        "RemoteRepos": "https://cloud.r-project.org",
+        "RemoteReposName": "CRAN",
+        "RemotePkgPlatform": "source",
+        "RemoteSha": "0.9.0"
       }
     },
     "promises": {
@@ -1041,6 +1255,79 @@
         "RemoteSha": "0.1.7-2"
       }
     },
+    "sys": {
+      "Source": "CRAN",
+      "Repository": "https://cloud.r-project.org",
+      "description": {
+        "Package": "sys",
+        "Type": "Package",
+        "Title": "Powerful and Reliable Tools for Running System Commands in R",
+        "Version": "3.4.3",
+        "Authors@R": "c(person(\"Jeroen\", \"Ooms\", role = c(\"aut\", \"cre\"), \n      email = \"jeroenooms@gmail.com\", comment = c(ORCID = \"0000-0002-4035-0289\")),\n    person(\"Gábor\", \"Csárdi\", , \"csardi.gabor@gmail.com\", role = \"ctb\"))",
+        "Description": "Drop-in replacements for the base system2() function with fine control\n    and consistent behavior across platforms. Supports clean interruption, timeout, \n    background tasks, and streaming STDIN / STDOUT / STDERR over binary or text \n    connections. Arguments on Windows automatically get encoded and quoted to work \n    on different locales.",
+        "License": "MIT + file LICENSE",
+        "URL": "https://jeroen.r-universe.dev/sys",
+        "BugReports": "https://github.com/jeroen/sys/issues",
+        "Encoding": "UTF-8",
+        "RoxygenNote": "7.1.1",
+        "Suggests": "unix (>= 1.4), spelling, testthat",
+        "Language": "en-US",
+        "NeedsCompilation": "yes",
+        "Packaged": "2024-10-03 14:13:17 UTC; jeroen",
+        "Author": "Jeroen Ooms [aut, cre] (<https://orcid.org/0000-0002-4035-0289>),\n  Gábor Csárdi [ctb]",
+        "Maintainer": "Jeroen Ooms <jeroenooms@gmail.com>",
+        "Repository": "CRAN",
+        "Date/Publication": "2024-10-04 09:40:02 UTC",
+        "Built": "R 4.1.2; x86_64-pc-linux-gnu; 2026-05-26 03:41:43 UTC; unix",
+        "RemoteType": "standard",
+        "RemoteRef": "sys",
+        "RemotePkgRef": "sys",
+        "RemoteRepos": "https://cloud.r-project.org",
+        "RemoteReposName": "CRAN",
+        "RemotePkgPlatform": "source",
+        "RemoteSha": "3.4.3"
+      }
+    },
+    "vctrs": {
+      "Source": "CRAN",
+      "Repository": "https://cloud.r-project.org",
+      "description": {
+        "Package": "vctrs",
+        "Title": "Vector Helpers",
+        "Version": "0.7.3",
+        "Authors@R": "c(\n    person(\"Hadley\", \"Wickham\", , \"hadley@posit.co\", role = \"aut\"),\n    person(\"Lionel\", \"Henry\", , \"lionel@posit.co\", role = \"aut\"),\n    person(\"Davis\", \"Vaughan\", , \"davis@posit.co\", role = c(\"aut\", \"cre\")),\n    person(\"data.table team\", role = \"cph\",\n           comment = \"Radix sort based on data.table's forder() and their contribution to R's order()\"),\n    person(\"Posit Software, PBC\", role = c(\"cph\", \"fnd\"))\n  )",
+        "Description": "Defines new notions of prototype and size that are used to\n    provide tools for consistent and well-founded type-coercion and\n    size-recycling, and are in turn connected to ideas of type- and\n    size-stability useful for analysing function interfaces.",
+        "License": "MIT + file LICENSE",
+        "URL": "https://vctrs.r-lib.org/, https://github.com/r-lib/vctrs",
+        "BugReports": "https://github.com/r-lib/vctrs/issues",
+        "Depends": "R (>= 4.0.0)",
+        "Imports": "cli (>= 3.4.0), glue, lifecycle (>= 1.0.3), rlang (>= 1.1.7)",
+        "Suggests": "bit64, covr, crayon, dplyr (>= 0.8.5), generics, knitr,\npillar (>= 1.4.4), pkgdown (>= 2.0.1), rmarkdown, testthat (>=\n3.0.0), tibble (>= 3.1.3), waldo (>= 0.2.0), withr, xml2,\nzeallot",
+        "VignetteBuilder": "knitr",
+        "Config/build/compilation-database": "true",
+        "Config/Needs/website": "tidyverse/tidytemplate",
+        "Config/testthat/edition": "3",
+        "Config/testthat/parallel": "true",
+        "Encoding": "UTF-8",
+        "KeepSource": "true",
+        "Language": "en-GB",
+        "RoxygenNote": "7.3.3",
+        "NeedsCompilation": "yes",
+        "Packaged": "2026-04-10 14:27:17 UTC; davis",
+        "Author": "Hadley Wickham [aut],\n  Lionel Henry [aut],\n  Davis Vaughan [aut, cre],\n  data.table team [cph] (Radix sort based on data.table's forder() and\n    their contribution to R's order()),\n  Posit Software, PBC [cph, fnd]",
+        "Maintainer": "Davis Vaughan <davis@posit.co>",
+        "Repository": "CRAN",
+        "Date/Publication": "2026-04-11 06:20:03 UTC",
+        "Built": "R 4.1.2; x86_64-pc-linux-gnu; 2026-05-26 03:41:46 UTC; unix",
+        "RemoteType": "standard",
+        "RemoteRef": "vctrs",
+        "RemotePkgRef": "vctrs",
+        "RemoteRepos": "https://cloud.r-project.org",
+        "RemoteReposName": "CRAN",
+        "RemotePkgPlatform": "source",
+        "RemoteSha": "0.7.3"
+      }
+    },
     "withr": {
       "Source": "CRAN",
       "Repository": "https://cloud.r-project.org",
@@ -1078,6 +1365,44 @@
         "RemoteSha": "3.0.2"
       }
     },
+    "xml2": {
+      "Source": "CRAN",
+      "Repository": "https://cloud.r-project.org",
+      "description": {
+        "Package": "xml2",
+        "Title": "Parse XML",
+        "Version": "1.5.2",
+        "Authors@R": "c(\n    person(\"Hadley\", \"Wickham\", role = \"aut\"),\n    person(\"Jim\", \"Hester\", role = \"aut\"),\n    person(\"Jeroen\", \"Ooms\", email = \"jeroenooms@gmail.com\", role = c(\"aut\", \"cre\")),\n    person(\"Posit Software, PBC\", role = c(\"cph\", \"fnd\")),\n    person(\"R Foundation\", role = \"ctb\",\n           comment = \"Copy of R-project homepage cached as example\")\n  )",
+        "Description": "Bindings to 'libxml2' for working with XML data using a simple, \n    consistent interface based on 'XPath' expressions. Also supports XML schema\n    validation; for 'XSLT' transformations see the 'xslt' package.",
+        "License": "MIT + file LICENSE",
+        "URL": "https://xml2.r-lib.org, https://r-lib.r-universe.dev/xml2",
+        "BugReports": "https://github.com/r-lib/xml2/issues",
+        "Depends": "R (>= 3.6.0)",
+        "Imports": "cli, methods, rlang (>= 1.1.0)",
+        "Suggests": "covr, curl, httr, knitr, mockery, rmarkdown, testthat (>=\n3.2.0), xslt",
+        "VignetteBuilder": "knitr",
+        "Config/Needs/website": "tidyverse/tidytemplate",
+        "Encoding": "UTF-8",
+        "RoxygenNote": "7.3.3",
+        "SystemRequirements": "libxml2: libxml2-dev (deb), libxml2-devel (rpm)",
+        "Collate": "'S4.R' 'as_list.R' 'xml_parse.R' 'as_xml_document.R'\n'classes.R' 'format.R' 'import-standalone-obj-type.R'\n'import-standalone-purrr.R' 'import-standalone-types-check.R'\n'init.R' 'nodeset_apply.R' 'paths.R' 'utils.R' 'xml2-package.R'\n'xml_attr.R' 'xml_children.R' 'xml_document.R' 'xml_find.R'\n'xml_missing.R' 'xml_modify.R' 'xml_name.R' 'xml_namespaces.R'\n'xml_node.R' 'xml_nodeset.R' 'xml_path.R' 'xml_schema.R'\n'xml_serialize.R' 'xml_structure.R' 'xml_text.R' 'xml_type.R'\n'xml_url.R' 'xml_write.R' 'zzz.R'",
+        "Config/testthat/edition": "3",
+        "NeedsCompilation": "yes",
+        "Packaged": "2026-01-17 13:03:05 UTC; jeroen",
+        "Author": "Hadley Wickham [aut],\n  Jim Hester [aut],\n  Jeroen Ooms [aut, cre],\n  Posit Software, PBC [cph, fnd],\n  R Foundation [ctb] (Copy of R-project homepage cached as example)",
+        "Maintainer": "Jeroen Ooms <jeroenooms@gmail.com>",
+        "Repository": "CRAN",
+        "Date/Publication": "2026-01-17 16:10:02 UTC",
+        "Built": "R 4.1.2; x86_64-pc-linux-gnu; 2026-05-26 04:11:26 UTC; unix",
+        "RemoteType": "standard",
+        "RemoteRef": "xml2",
+        "RemotePkgRef": "xml2",
+        "RemoteRepos": "https://cloud.r-project.org",
+        "RemoteReposName": "CRAN",
+        "RemotePkgPlatform": "source",
+        "RemoteSha": "1.5.2"
+      }
+    },
     "xtable": {
       "Source": "CRAN",
       "Repository": "https://cloud.r-project.org",
@@ -1113,13 +1438,10 @@
   },
   "files": {
     ".Rprofile": {
-      "checksum": "0a9a8c976ee53580e66b3b0a965c91fe"
+      "checksum": "a08b566be7b0ea60a85a5d9db904664b"
     },
     "app.R": {
-      "checksum": "49788181edc67256bf89afd84fb3a82d"
-    },
-    "CLAUDE.md": {
-      "checksum": "faaa39f69352a0cf31bc3db96928cd41"
+      "checksum": "d32873456e58183e33076cb022a245e5"
     },
     "convert_to_dzi.sh": {
       "checksum": "dd872dc7f5843fb5c40df460b3eb3715"
@@ -1130,17 +1452,14 @@
     "images/.gitkeep": {
       "checksum": "d41d8cd98f00b204e9800998ecf8427e"
     },
-    "README.md": {
-      "checksum": "fae6f929405b79000fd1b9648dedc5ea"
-    },
     "renv.lock": {
-      "checksum": "3ece67bcf6d267f7f3ede74c3f4533d1"
+      "checksum": "f8423be40d50762eaf92200d71303e4f"
     },
     "setup.sh": {
       "checksum": "331d3422880e583492a9df6a348fd4f9"
     },
     "template.html": {
-      "checksum": "d7ea02d2e8edf4a7f8c7643969aaf3ae"
+      "checksum": "6d1d5db7c52818c3a422d134c4bf0c12"
     }
   },
   "users": null

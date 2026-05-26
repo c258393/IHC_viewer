@@ -16,70 +16,98 @@
 
     /* ---- Sidebar ---- */
     .sidebar {
-      width: 320px; min-width: 320px; height: 100vh;
+      width: 340px; min-width: 340px; height: 100vh;
       background: #1e1e2e; border-right: 1px solid #333;
       display: flex; flex-direction: column; overflow: hidden;
     }
     .sidebar-header {
-      padding: 16px 16px 12px; border-bottom: 1px solid #333;
+      padding: 14px 16px 10px; border-bottom: 1px solid #333;
     }
     .sidebar-header h2 {
-      margin: 0 0 12px; font-size: 18px; font-weight: 600; color: #cdd6f4;
+      margin: 0 0 8px; font-size: 17px; font-weight: 600; color: #cdd6f4;
       display: flex; align-items: center; gap: 8px;
     }
-    .sidebar-header h2 .logo { font-size: 24px; }
-    .dir-row { display: flex; gap: 6px; align-items: flex-start; }
-    .dir-row .form-group { flex: 1; margin-bottom: 0; }
-    .dir-row input[type="text"] {
-      padding: 7px 10px !important; border: 1px solid #444 !important; border-radius: 6px !important;
-      background: #313244 !important; color: #cdd6f4 !important; font-size: 13px !important;
+
+    /* ---- Tabs ---- */
+    .tab-bar {
+      display: flex; border-bottom: 1px solid #333;
+    }
+    .tab-btn {
+      flex: 1; padding: 9px 0; border: none; background: transparent;
+      color: #6c7086; font-size: 13px; font-weight: 600; cursor: pointer;
+      border-bottom: 2px solid transparent; transition: all 0.2s;
+    }
+    .tab-btn:hover { color: #bac2de; }
+    .tab-btn.active { color: #89b4fa; border-bottom-color: #89b4fa; }
+
+    .tab-content { display: none; flex: 1; flex-direction: column; overflow: hidden; }
+    .tab-content.active { display: flex; }
+
+    /* ---- S3 panel ---- */
+    .s3-header {
+      padding: 10px 12px; border-bottom: 1px solid #333;
+    }
+    .s3-row { display: flex; gap: 6px; align-items: flex-start; }
+    .s3-row .form-group { flex: 1; margin-bottom: 0; }
+    .s3-row input[type="text"] {
+      padding: 6px 8px !important; border: 1px solid #444 !important; border-radius: 6px !important;
+      background: #313244 !important; color: #cdd6f4 !important; font-size: 12px !important;
       width: 100% !important;
     }
-    .dir-row input[type="text"]:focus { border-color: #89b4fa !important; }
+    .s3-bucket-label {
+      font-size: 11px; color: #6c7086; margin-bottom: 4px;
+    }
+
+    /* ---- Local panel ---- */
+    .local-header {
+      padding: 10px 12px; border-bottom: 1px solid #333;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .local-header span { font-size: 12px; color: #6c7086; }
+
+    /* ---- Shared button style ---- */
     .btn-refresh {
-      padding: 7px 12px; border: none; border-radius: 6px; cursor: pointer;
-      background: #89b4fa; color: #1e1e2e; font-weight: 600; font-size: 13px;
-      margin-top: 0;
+      padding: 6px 10px; border: none; border-radius: 6px; cursor: pointer;
+      background: #89b4fa; color: #1e1e2e; font-weight: 600; font-size: 12px;
     }
     .btn-refresh:hover { background: #74c7ec; }
+    .btn-sm { padding: 4px 8px; font-size: 11px; }
 
-    .file-count {
-      padding: 8px 16px; font-size: 12px; color: #6c7086;
-      border-bottom: 1px solid #333;
+    /* ---- File lists ---- */
+    .file-list {
+      flex: 1; overflow-y: auto; padding: 4px 6px;
     }
-
-    /* ---- Image list ---- */
-    .image-list {
-      flex: 1; overflow-y: auto; padding: 6px 8px;
-    }
-    .image-list::-webkit-scrollbar { width: 6px; }
-    .image-list::-webkit-scrollbar-thumb { background: #444; border-radius: 3px; }
+    .file-list::-webkit-scrollbar { width: 6px; }
+    .file-list::-webkit-scrollbar-thumb { background: #444; border-radius: 3px; }
 
     .img-item {
-      padding: 9px 12px; margin: 2px 0; cursor: pointer; border-radius: 8px;
-      display: flex; align-items: center; gap: 8px;
-      transition: background 0.15s; font-size: 13px; color: #bac2de;
+      padding: 8px 10px; margin: 1px 0; cursor: pointer; border-radius: 6px;
+      display: flex; align-items: center; gap: 6px;
+      transition: background 0.15s; font-size: 12px; color: #bac2de;
     }
     .img-item:hover { background: #313244; }
     .img-item.selected { background: #45475a; color: #cdd6f4; }
+    .img-item.s3-cached { opacity: 0.7; }
     .img-item .name {
       flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
     }
     .badge {
-      font-size: 10px; padding: 2px 7px; border-radius: 4px;
-      font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; flex-shrink: 0;
+      font-size: 9px; padding: 2px 6px; border-radius: 4px;
+      font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px;
+      flex-shrink: 0;
     }
     .badge-simple { background: #a6e3a1; color: #1e1e2e; }
     .badge-dzi    { background: #89b4fa; color: #1e1e2e; }
     .badge-wsi    { background: #fab387; color: #1e1e2e; }
+    .badge-folder { background: #585b70; color: #cdd6f4; }
 
     /* ---- Metadata ---- */
     .meta-panel {
-      border-top: 1px solid #333; padding: 12px 16px;
-      font-size: 12px; color: #a6adc8; max-height: 180px; overflow-y: auto;
+      border-top: 1px solid #333; padding: 10px 14px;
+      font-size: 11px; color: #a6adc8; max-height: 160px; overflow-y: auto;
     }
     .meta-panel .meta-row {
-      display: flex; justify-content: space-between; padding: 3px 0;
+      display: flex; justify-content: space-between; padding: 2px 0;
     }
     .meta-panel .meta-label { font-weight: 600; color: #cdd6f4; }
 
@@ -91,28 +119,42 @@
       position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
       text-align: center; color: #585b70; pointer-events: none;
     }
-    .empty-state .icon { font-size: 72px; margin-bottom: 16px; opacity: 0.6; }
-    .empty-state .title { font-size: 20px; font-weight: 500; margin-bottom: 8px; }
-    .empty-state .sub { font-size: 13px; }
+    .empty-state .icon { font-size: 64px; margin-bottom: 12px; opacity: 0.6; }
+    .empty-state .title { font-size: 18px; font-weight: 500; margin-bottom: 6px; }
+    .empty-state .sub { font-size: 12px; line-height: 1.5; }
 
-    /* ---- Overlay info bar ---- */
     .info-bar {
       position: absolute; bottom: 0; left: 0; right: 0;
       background: rgba(30,30,46,0.85); backdrop-filter: blur(8px);
-      padding: 8px 16px; font-size: 12px; color: #a6adc8;
-      display: flex; justify-content: space-between; align-items: center;
-      border-top: 1px solid #333; display: none;
+      padding: 6px 14px; font-size: 11px; color: #a6adc8;
+      display: none; justify-content: space-between; align-items: center;
+      border-top: 1px solid #333;
     }
     .info-bar.visible { display: flex; }
 
-    /* ---- Toast notification ---- */
+    /* ---- Progress overlay ---- */
+    .progress-overlay {
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(17,17,27,0.9); display: none;
+      justify-content: center; align-items: center; flex-direction: column;
+      z-index: 100;
+    }
+    .progress-overlay.visible { display: flex; }
+    .progress-spinner {
+      width: 40px; height: 40px; border: 3px solid #333;
+      border-top-color: #89b4fa; border-radius: 50%;
+      animation: spin 0.8s linear infinite; margin-bottom: 16px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .progress-text { color: #89b4fa; font-size: 14px; font-weight: 500; }
+
+    /* ---- Toast ---- */
     .toast {
-      position: fixed; top: 20px; right: 20px; z-index: 9999;
-      background: #f38ba8; color: #1e1e2e; padding: 12px 20px;
-      border-radius: 8px; font-size: 13px; font-weight: 500;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      position: fixed; top: 16px; right: 16px; z-index: 9999;
+      background: #f38ba8; color: #1e1e2e; padding: 10px 18px;
+      border-radius: 8px; font-size: 12px; font-weight: 500;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4); max-width: 380px;
       transform: translateX(120%); transition: transform 0.3s ease;
-      max-width: 400px;
     }
     .toast.show { transform: translateX(0); }
     .toast.warning { background: #fab387; }
@@ -124,16 +166,43 @@
     <!-- Sidebar -->
     <div class="sidebar">
       <div class="sidebar-header">
-        <h2><span class="logo">&#128300;</span> IHC Image Viewer</h2>
-        <div class="dir-row">
-          {{ dir_input }}
-          {{ refresh_btn }}
+        <h2>&#128300; IHC Image Viewer</h2>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tab-bar">
+        <button class="tab-btn active" data-tab="s3">&#9729; S3 Browser</button>
+        <button class="tab-btn" data-tab="local">&#128193; Local Files</button>
+      </div>
+
+      <!-- S3 Tab -->
+      <div class="tab-content active" id="tab-s3">
+        <div class="s3-header">
+          <div class="s3-bucket-label">s3://loh-prd-onc/</div>
+          <div class="s3-row">
+            {{ s3_prefix_input }}
+            {{ s3_browse_btn }}
+          </div>
+        </div>
+        <div class="file-list" id="s3-file-list">
+          {{ s3_file_list_ui }}
         </div>
       </div>
-      <div class="file-count" id="file-count">0 image(s)</div>
-      <div class="image-list" id="image-list">
-        {{ file_list_ui }}
+
+      <!-- Local Tab -->
+      <div class="tab-content" id="tab-local">
+        <div class="local-header">
+          <span id="local-count">0 image(s)</span>
+          <button class="btn-refresh btn-sm" id="local-refresh-btn"
+                  onclick="Shiny.setInputValue('local_refresh', Math.random(), {priority:'event'})">
+            &#8635; Refresh</button>
+        </div>
+        <div class="file-list" id="local-file-list">
+          {{ local_file_list_ui }}
+        </div>
       </div>
+
+      <!-- Metadata (shared) -->
       {{ metadata_ui }}
     </div>
 
@@ -143,7 +212,15 @@
       <div class="empty-state" id="empty-state">
         <div class="icon">&#128300;</div>
         <div class="title">Select an image to view</div>
-        <div class="sub">Supports PNG, JPG, GIF, BMP, WEBP<br>and DZI-converted SVS, TIFF, NDPI</div>
+        <div class="sub">
+          Browse S3 to download &amp; view images<br>
+          Supports PNG, JPG, SVS, TIFF, NDPI<br>
+          WSI files auto-convert to DZI tiles
+        </div>
+      </div>
+      <div class="progress-overlay" id="progress-overlay">
+        <div class="progress-spinner"></div>
+        <div class="progress-text" id="progress-text">Loading...</div>
       </div>
       <div class="info-bar" id="info-bar">
         <span id="info-name"></span>
@@ -152,22 +229,34 @@
     </div>
   </div>
 
-  <!-- Toast notification -->
   <div class="toast" id="toast"></div>
 
   <script>
     var viewer = null;
+    var toastTimer = null;
 
     function showToast(msg, type, duration) {
       var t = document.getElementById("toast");
       t.textContent = msg;
       t.className = "toast " + (type || "") + " show";
-      setTimeout(function() { t.className = "toast"; }, duration || 4000);
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(function() { t.className = "toast"; }, duration || 4000);
     }
 
-    // Load image into OpenSeadragon
+    // ---- Tab switching ----
+    document.querySelectorAll(".tab-btn").forEach(function(btn) {
+      btn.addEventListener("click", function() {
+        document.querySelectorAll(".tab-btn").forEach(function(b) { b.classList.remove("active"); });
+        document.querySelectorAll(".tab-content").forEach(function(c) { c.classList.remove("active"); });
+        btn.classList.add("active");
+        document.getElementById("tab-" + btn.dataset.tab).classList.add("active");
+      });
+    });
+
+    // ---- OpenSeadragon ----
     Shiny.addCustomMessageHandler("loadImage", function(msg) {
       document.getElementById("empty-state").style.display = "none";
+      document.getElementById("progress-overlay").classList.remove("visible");
 
       if (viewer) { viewer.destroy(); viewer = null; }
 
@@ -193,16 +282,11 @@
         visibilityRatio: 0.5,
         constrainDuringPan: false,
         defaultZoomLevel: 0,
-        gestureSettingsMouse: {
-          scrollToZoom: true, clickToZoom: true,
-          dblClickToZoom: true, flickEnabled: true
-        },
-        gestureSettingsTouch: {
-          pinchToZoom: true, flickEnabled: true
-        }
+        gestureSettingsMouse: { scrollToZoom: true, clickToZoom: true,
+          dblClickToZoom: true, flickEnabled: true },
+        gestureSettingsTouch: { pinchToZoom: true, flickEnabled: true }
       });
 
-      // Info bar
       var infoBar = document.getElementById("info-bar");
       var infoName = document.getElementById("info-name");
       var infoZoom = document.getElementById("info-zoom");
@@ -212,19 +296,12 @@
       viewer.addHandler("zoom", function(e) {
         infoZoom.textContent = "Zoom: " + e.zoom.toFixed(2) + "x";
       });
-
       viewer.addHandler("open", function() {
         infoZoom.textContent = "Zoom: " + viewer.viewport.getZoom().toFixed(2) + "x";
       });
-
       viewer.addHandler("open-failed", function(e) {
         showToast("Failed to open image: " + (e.message || "unknown error"), "");
-        Shiny.setInputValue("viewer_error", e.message || "open-failed");
       });
-    });
-
-    Shiny.addCustomMessageHandler("showToast", function(msg) {
-      showToast(msg.text, msg.type, msg.duration);
     });
 
     Shiny.addCustomMessageHandler("clearViewer", function(msg) {
@@ -233,23 +310,77 @@
       document.getElementById("info-bar").className = "info-bar";
     });
 
-    // Update file count
-    Shiny.addCustomMessageHandler("updateFileCount", function(msg) {
-      document.getElementById("file-count").textContent = msg.text;
+    Shiny.addCustomMessageHandler("showToast", function(msg) {
+      showToast(msg.text, msg.type, msg.duration);
     });
 
-    // Image item click handler (using event delegation)
+    Shiny.addCustomMessageHandler("showProgress", function(msg) {
+      var el = document.getElementById("progress-overlay");
+      if (msg.show) {
+        document.getElementById("progress-text").textContent = msg.text || "Loading...";
+        el.classList.add("visible");
+      } else {
+        el.classList.remove("visible");
+      }
+    });
+
+    Shiny.addCustomMessageHandler("updateLocalCount", function(msg) {
+      document.getElementById("local-count").textContent = msg.text;
+    });
+
+    // Trigger S3 browse programmatically (after prefix navigation)
+    Shiny.addCustomMessageHandler("triggerS3Browse", function(msg) {
+      setTimeout(function() {
+        document.getElementById("s3_browse").click();
+      }, 100);
+    });
+
+    // ---- Click handlers (event delegation) ----
     document.addEventListener("click", function(e) {
-      var item = e.target.closest(".img-item");
-      if (!item) return;
-      var file = item.getAttribute("data-file");
-      if (file) {
-        Shiny.setInputValue("select_image", file, {priority: "event"});
-        // Visual selection
-        document.querySelectorAll(".img-item.selected").forEach(function(el) {
-          el.classList.remove("selected");
-        });
-        item.classList.add("selected");
+      // S3 folder navigation
+      var folder = e.target.closest(".s3-folder");
+      if (folder) {
+        var prefix = folder.getAttribute("data-s3-prefix");
+        if (prefix !== null) {
+          Shiny.setInputValue("s3_navigate", prefix, {priority: "event"});
+        }
+        return;
+      }
+
+      // S3 file download
+      var s3file = e.target.closest(".s3-file");
+      if (s3file) {
+        var key = s3file.getAttribute("data-s3-key");
+        var name = s3file.getAttribute("data-s3-name");
+        if (key) {
+          Shiny.setInputValue("s3_download",
+            {key: key, name: name}, {priority: "event"});
+          // Visual feedback
+          document.querySelectorAll(".img-item.selected").forEach(function(el) {
+            el.classList.remove("selected");
+          });
+          s3file.classList.add("selected");
+        }
+        return;
+      }
+
+      // Local file selection
+      var localFile = e.target.closest(".local-file");
+      if (localFile) {
+        var file = localFile.getAttribute("data-file");
+        if (file) {
+          Shiny.setInputValue("select_image", file, {priority: "event"});
+          document.querySelectorAll(".img-item.selected").forEach(function(el) {
+            el.classList.remove("selected");
+          });
+          localFile.classList.add("selected");
+          // Switch to local tab
+          document.querySelectorAll(".tab-btn").forEach(function(b) { b.classList.remove("active"); });
+          document.querySelectorAll(".tab-content").forEach(function(c) { c.classList.remove("active"); });
+          document.querySelector('[data-tab="local"]').classList.add("active");
+          document.getElementById("tab-local").classList.add("active");
+        }
+        return;
       }
     });
   </script>
